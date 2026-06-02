@@ -67,20 +67,11 @@ The agent should first ask the user to restate their current understanding, then
 
 When a question can be answered from the repository or local artifacts, the agent should inspect those sources instead of making the user guess.
 
-## Related Work and Inspiration
+## Inspiration
 
-Learn Quiz sits in the broader agent-skill ecosystem rather than trying to invent a new category from scratch. Related skills include:
+Learn Quiz was inspired by [ThariqS's Learn Quiz gist](https://gist.github.com/ThariqS/1389dcdff9eba4789887a2211370f06b), which frames the core loop: teach incrementally, ask the learner to restate their understanding, keep a checklist, and quiz until mastery is demonstrated.
 
-- [mattpocock/skills@teach](https://skills.sh/mattpocock/skills/teach), which focuses on teaching through structured interaction.
-- [everyinc/compound-engineering-plugin@coding-tutor](https://skills.sh/everyinc/compound-engineering-plugin/coding-tutor), which explores coding-focused tutoring.
-- [readwiseio/readwise-skills@quiz](https://skills.sh/readwiseio/readwise-skills/quiz), which uses quiz behavior as part of a learning workflow.
-
-The learning loop is also influenced by established teaching patterns:
-
-- [Teach-back](https://www.ahrq.gov/teamstepps-program/curriculum/communication/tools/teachback.html): asking the learner to explain their understanding back so gaps become visible.
-- [Retrieval practice](https://www.cmu.edu/teaching/resources/instructionalstrategies/activelearningstrategies/retrievalpractice/index.html): using recall and questions as part of learning, not merely as final assessment.
-
-Learn Quiz is shaped for agent-assisted technical work: code changes, debugging sessions, design decisions, PR reviews, and architecture discussions where the goal is not only to get an answer, but to leave with a durable mental model.
+This repository packages that learning loop as an installable agent skill and adapts it for technical work such as code changes, debugging sessions, design decisions, PR reviews, and architecture discussions.
 
 ## Skill Path
 

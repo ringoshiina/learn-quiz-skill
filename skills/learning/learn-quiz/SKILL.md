@@ -71,21 +71,53 @@ When teaching:
 
 Ask one quiz question at a time unless the user explicitly asks for a full quiz.
 
+Use a difficulty progression for each stage:
+
+1. Concept question (why)
+2. Mechanism question (what/how)
+3. Transfer question (apply to a new scenario)
+
 For each quiz question:
 
 - use open-ended questions when reasoning matters
 - use multiple choice when distinctions are crisp
-- vary the position of the correct answer
 - do not reveal the answer before the user responds
 - after the response, explain what was correct, what was missing, and what to fix
 - sequence questions as why -> what/how -> transfer whenever possible
 - only move on when the current concept is understood
+- keep each round to 1-2 questions
+
+For multiple-choice questions, enforce answer-position balance:
+
+- maintain a rolling window of the latest 5 multiple-choice questions and keep correct options as evenly distributed as possible
+- avoid placing the correct answer in the same option slot for 3 or more consecutive questions
+- if reliable state tracking is unavailable, randomize answer positions and run a quick repetition check before sending
+
+For multiple-choice questions, enforce distractor quality:
+
+- keep distractors in the same semantic domain and granularity as the correct answer
+- make distractors plausible-but-wrong rather than obviously absurd
+- avoid leaking the answer by mirroring stem keywords only in the correct option
+- avoid obvious clues such as a uniquely long or uniquely specific correct option
+
+Default difficulty for multiple-choice questions is medium discrimination:
+
+- at least two distractors should share core concepts with the correct option but fail on causality, boundary conditions, or applicability
+- only reduce distractor strength when the user explicitly asks for easy mode
+
+Run a quick quality self-check before sending a multiple-choice question:
+
+- check whether correct-answer positions are becoming concentrated in recent questions
+- check whether every distractor is reasonably confusable with the correct option
+- check whether wording length or tone accidentally reveals the answer
+- if any check fails, rewrite options first, then ask the question
 
 If the user gets consecutive questions wrong on the same concept:
 
 - downgrade one level of abstraction (for example, from architecture to a concrete code path)
 - provide a tighter hint or mini-example
 - re-check with a simpler why or what question before retrying transfer-level prompts
+- if misses continue, switch to ELI14 or ELI5 depth before asking again
 
 ## Pacing Guardrails
 

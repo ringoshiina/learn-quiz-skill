@@ -1,4 +1,4 @@
 interface:
   display_name: "Learn Quiz"
-  short_description: "Teach and quiz until understanding is clear"
-  default_prompt: "Use $learn-quiz to help me understand this topic step by step and quiz me until I can explain it."
+  short_description: "Teach and quiz from source context"
+  default_prompt: "Use $learn-quiz to help me understand this source material, quiz me, and continue until I can explain it."
